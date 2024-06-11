@@ -2,8 +2,16 @@ let create = document.getElementById("create");
 let clear = document.getElementById("clear");
 let TaskList = document.getElementById("TaskList");
 let navUp = document.getElementById("navUp");
+let taskListContainer = document.querySelector("task-list-container");
 
 let vacio = true;
+
+let textTitle = document.getElementById("textTitle");
+textTitle.addEventListener("keyup", e=>{
+    let onValue = e.target.scrollHeight;
+    textarea.style.height="auto";
+    textarea.style.height = `${onValue}px`;
+});
 
 let textarea = document.querySelector("textarea");
 textarea.addEventListener("keyup", e=>{
@@ -15,15 +23,15 @@ textarea.addEventListener("keyup", e=>{
 
 clear.addEventListener("click", function (event) {
     event.preventDefault();
+    textTitle.value = "";
     textInput.value = "";
     textarea.style.height="auto";
 });
 
 create.addEventListener("click", function (event){
     event.preventDefault();
+    onValue = textTitle.value;
     inValue = textInput.value;  
-
-   
 
 
     if (textInput.value == "") {
@@ -35,7 +43,7 @@ create.addEventListener("click", function (event){
         </div>
         `
         navUp.appendChild(alerta);
-        //desaparecer alerta a los 5 segundos 
+        //desaparecer alerta a los 1.5 segundos 
         setTimeout(() => {
             alerta.remove();
         }, 1500);
@@ -43,18 +51,19 @@ create.addEventListener("click", function (event){
         let cardTask = document.createElement('div');
         cardTask.classList.add('TaskList');
         cardTask.innerHTML = `
-        <div class="card text-bg-info mb-3 $cyan-100" style="max-width: 20rem;">
+        <div class="card text-bg-light mb-3" style="width: 15rem; height: 16rem;">
         <div class="card-body">
+            <h3>${onValue}</h3>
             <p class="card-text">${inValue}</p>
         </div>
         `;
         TaskList.appendChild(cardTask);
+        textTitle.value = "";
         textInput.value = "";  
         
     }
-
-
 });
-   
+
+localStorage.setItem("inValue",JSON.stringify(inValue));
 
 

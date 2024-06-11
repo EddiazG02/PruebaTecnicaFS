@@ -35,4 +35,26 @@ main{
     outline: none;
     resize: none;
     max-height: 150px;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+}
+#textTitle {
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    resize: none;
+    box-sizing: border-box;
+}
+.slider{
+    overflow: hidden;
+}
+.task-list-container {
+    margin-top: 2%;
+    margin-left: 2%;
+    display: flex;
+    flex-wrap: nowrap; 
+    gap: 10px; 
 }

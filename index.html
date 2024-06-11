@@ -34,14 +34,17 @@
             </div>
           </nav>
     </header>
-      <div id="TaskList">
+      <div id="TaskList" class = "task-list-container ">
 
       </div>
     <main>
         <div class="wrapper">
-          <textarea id="textInput" maxlength="250" placeholder="Escribe tu tarea por hacer..."></textarea>
+          <div class="entradas">
+            <input id="textTitle" maxlength="60" placeholder="Titulo de tu tarea"></input>
+            <textarea id="textInput" maxlength="250" placeholder="Escribe tu tarea por hacer..."></textarea>
+          </div>
          <div class="botones">
-            <button type="button" class="btn btn-info" id="create">Crear</button>
+            <button type="button" class="btn btn-info" id="create" >Crear</button>
             <button type="button" class="btn btn-danger" id="clear">limpiar</button>
          </div>
 
