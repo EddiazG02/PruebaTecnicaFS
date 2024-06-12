@@ -4,7 +4,9 @@ let TaskList = document.getElementById("TaskList");
 let navUp = document.getElementById("navUp");
 let taskListContainer = document.querySelector("task-list-container");
 
+
 let vacio = true;
+
 
 let textTitle = document.getElementById("textTitle");
 textTitle.addEventListener("keyup", e=>{
@@ -48,22 +50,42 @@ create.addEventListener("click", function (event){
             alerta.remove();
         }, 1500);
     } else {
-        let cardTask = document.createElement('div');
-        cardTask.classList.add('TaskList');
-        cardTask.innerHTML = `
-        <div class="card text-bg-light mb-3" style="width: 15rem; height: 16rem;">
-        <div class="card-body">
-            <h3>${onValue}</h3>
-            <p class="card-text">${inValue}</p>
-        </div>
-        `;
-        TaskList.appendChild(cardTask);
-        textTitle.value = "";
-        textInput.value = "";  
+
+       let tarea = JSON.parse(localStorage.getItem("tarea")) || [];
+
+        let newTask = {
+            titulo: onValue,
+            descripcion: inValue
+        };
+
+        tarea.push(newTask);
+
+        localStorage.setItem("tarea", JSON.stringify(tarea));
+        
+        TaskList.innerHTML = '';
+
+        tarea.forEach(tarea => {
+            let cardTask = document.createElement('div');
+            cardTask.classList.add('TaskList');
+            cardTask.innerHTML = `
+            <div class="card text-bg-light mb-3" style="width: 15rem; height: 16rem;">
+            <div class="card-body">
+                <h3>${tarea.titulo}</h3>
+                <p class="card-text">${tarea.descripcion}</p>
+            </div>
+            </div>
+            `;
+            TaskList.appendChild(cardTask);
+            textTitle.value = "";
+            textInput.value = "";
+        });
+        
+            
+            
         
     }
+
 });
-
-localStorage.setItem("inValue",JSON.stringify(inValue));
-
-
+window.onload = function() {
+    agregarTarea();
+};
